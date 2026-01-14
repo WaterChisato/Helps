@@ -19,7 +19,7 @@
 </head>
 <body>
 
-<div class="page-wrapper">
+<div class="center-box">
 
     <!-- 顶部标题 + 本地图标 -->
     <header class="site-header">
@@ -32,9 +32,73 @@
         <p class="subtitle">请选择一个帮助模块，或使用 ?post=编号 访问</p>
     </header>
 
-    <main class="content">
+    <main>
 
         <!-- 默认主页内容 -->
+        <section id="home" class="card">
+            <h2>帮助目录</h2>
+            <ul class="help-list">
+                <li><a href="?post=1">帮助模块 1</a></li>
+                <li><a href="?post=2">帮助模块 2</a></li>
+                <li><a href="?post=3">帮助模块 3</a></li>
+            </ul>
+        </section>
+
+        <!-- 动态加载内容 -->
+        <section id="postContent" class="card hidden">
+            <h2>加载中…</h2>
+            <div id="contentArea"></div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>© <span id="year"></span> 水喝千束 · 帮助界面</p>
+    </footer>
+
+</div>
+
+<script>
+    // 自动年份
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // 背景图 fallback 逻辑
+    const testImg = new Image();
+    testImg.src = "https://logo.kf.waterchisato.top/tybj.jpg";
+
+    testImg.onload = () => {
+        document.body.style.backgroundImage = "url('https://logo.kf.waterchisato.top/tybj.jpg')";
+    };
+
+    testImg.onerror = () => {
+        document.body.style.backgroundImage = "url('assets/tybj.jpg')";
+    };
+
+    // 获取 URL 参数
+    const params = new URLSearchParams(window.location.search);
+    const post = params.get("post");
+
+    if (post) {
+        document.getElementById("home").classList.add("hidden");
+        document.getElementById("postContent").classList.remove("hidden");
+
+        fetch(`help/post${post}.html`)
+            .then(res => {
+                if (!res.ok) throw new Error("未找到对应帮助页面");
+                return res.text();
+            })
+            .then(html => {
+                document.getElementById("contentArea").innerHTML = html;
+            })
+            .catch(err => {
+                document.getElementById("contentArea").innerHTML =
+                    `<p style="color:red;">${err.message}</p>`;
+            });
+    }
+</script>
+
+</body>
+</html>        <!-- 默认主页内容 -->
         <section id="home" class="card">
             <h2>帮助目录</h2>
             <ul class="help-list">
