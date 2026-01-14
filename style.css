@@ -1,0 +1,136 @@
+/* 全局基础样式 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+        Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: radial-gradient(circle at top left, #f5f7ff 0%, #e8ecff 40%, #fdfbff 100%);
+    color: #222;
+    line-height: 1.6;
+}
+
+.page-wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 16px;
+}
+
+/* 顶部标题 */
+.site-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+/* h1 + 图标布局 */
+.title-with-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 2.4rem;
+    color: #2b2f55;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* 图标样式 */
+.title-icon img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border-radius: 8px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.title-icon:hover img {
+    transform: scale(1.1);
+    opacity: 0.85;
+}
+
+.subtitle {
+    margin-top: 6px;
+    font-size: 0.95rem;
+    color: #6b6f8f;
+}
+
+/* 内容布局 */
+.content {
+    display: grid;
+    gap: 20px;
+}
+
+/* 卡片样式 */
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    padding: 20px 22px;
+    box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.08),
+        0 0 0 1px rgba(148, 163, 184, 0.18);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.card h2 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+/* 列表 */
+.help-list {
+    margin-top: 10px;
+    padding-left: 18px;
+}
+
+.help-list li {
+    margin-bottom: 6px;
+}
+
+.help-list a {
+    color: #4f46e5;
+    text-decoration: none;
+}
+
+.help-list a:hover {
+    text-decoration: underline;
+}
+
+/* 隐藏模块 */
+.hidden {
+    display: none;
+}
+
+/* 底部 */
+.site-footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #9ca3af;
+    font-size: 0.85rem;
+}
+
+/* 深色模式 */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #0f172a;
+        color: #e5e7eb;
+    }
+
+    .card {
+        background: rgba(15, 23, 42, 0.92);
+        border-color: rgba(51, 65, 85, 0.9);
+    }
+
+    .title-with-icon {
+        color: #e5e7eb;
+    }
+
+    .subtitle {
+        color: #9ca3c7;
+    }
+
+    .site-footer {
+        color: #6b7280;
+    }
+}
