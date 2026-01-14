@@ -16,25 +16,137 @@ body {
 
     color: #222;
     line-height: 1.6;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 0;
 }
 
-.page-wrapper {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 32px 16px;
-    backdrop-filter: blur(6px);
+/* 中置内容大盒子 */
+.center-box {
+    width: 90%;
+    max-width: 780px;
+
+    background: rgba(255, 255, 255, 0.82);
+    border-radius: 20px;
+    padding: 32px 28px;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.18),
+        0 0 0 1px rgba(255, 255, 255, 0.4);
+
+    backdrop-filter: blur(14px);
 }
 
 /* 顶部标题 */
 .site-header {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
 }
 
-/* h1 + 图标布局 */
 .title-with-icon {
     display: inline-flex;
     align-items: center;
+    gap: 12px;
+    font-size: 2.4rem;
+    color: #2b2f55;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.title-icon img {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    object-fit: contain;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.title-icon:hover img {
+    transform: scale(1.1);
+    opacity: 0.85;
+}
+
+.subtitle {
+    margin-top: 6px;
+    font-size: 0.95rem;
+    color: #6b6f8f;
+}
+
+/* 内容卡片 */
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(148, 163, 184, 0.25);
+
+    backdrop-filter: blur(8px);
+}
+
+.card h2 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+/* 列表 */
+.help-list {
+    margin-top: 10px;
+    padding-left: 18px;
+}
+
+.help-list li {
+    margin-bottom: 6px;
+}
+
+.help-list a {
+    color: #4f46e5;
+    text-decoration: none;
+}
+
+.help-list a:hover {
+    text-decoration: underline;
+}
+
+/* 隐藏模块 */
+.hidden {
+    display: none;
+}
+
+/* 底部 */
+.site-footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #9ca3af;
+    font-size: 0.85rem;
+}
+
+/* 深色模式 */
+@media (prefers-color-scheme: dark) {
+    .center-box {
+        background: rgba(15, 23, 42, 0.82);
+        border-color: rgba(51, 65, 85, 0.9);
+    }
+
+    .card {
+        background: rgba(15, 23, 42, 0.88);
+    }
+
+    .title-with-icon {
+        color: #e5e7eb;
+    }
+
+    .subtitle {
+        color: #9ca3c7;
+    }
+
+    .site-footer {
+        color: #6b7280;
+    }
+}    align-items: center;
     gap: 12px;
     font-size: 2.4rem;
     color: #2b2f55;
