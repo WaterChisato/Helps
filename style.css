@@ -9,42 +9,43 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
         Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
 
-    /* 背景由 JS 动态设置 */
-    background-size: cover;
-    background-position: center;
+    /* 清新渐变 + 玻璃拟态背景 */
+    background: linear-gradient(
+        135deg,
+        rgba(222, 245, 255, 0.9) 0%,
+        rgba(236, 248, 255, 0.9) 25%,
+        rgba(245, 255, 250, 0.9) 50%,
+        rgba(255, 255, 255, 0.9) 100%
+    );
     background-attachment: fixed;
+    backdrop-filter: blur(20px);
 
     color: #222;
     line-height: 1.6;
-
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 40px 0;
 }
 
-/* 中置内容大盒子 */
-.center-box {
-    width: 90%;
-    max-width: 780px;
+.page-wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 16px;
 
-    background: rgba(255, 255, 255, 0.82);
+    /* 整体玻璃拟态容器 */
+    background: rgba(255, 255, 255, 0.35);
     border-radius: 20px;
-    padding: 32px 28px;
-
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     box-shadow:
-        0 25px 60px rgba(0, 0, 0, 0.18),
+        0 25px 60px rgba(0, 0, 0, 0.15),
         0 0 0 1px rgba(255, 255, 255, 0.4);
-
-    backdrop-filter: blur(14px);
 }
 
 /* 顶部标题 */
 .site-header {
     text-align: center;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
 }
 
+/* h1 + 图标布局 */
 .title-with-icon {
     display: inline-flex;
     align-items: center;
@@ -54,105 +55,6 @@ body {
     text-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.title-icon img {
-    width: 38px;
-    height: 38px;
-    border-radius: 8px;
-    object-fit: contain;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.title-icon:hover img {
-    transform: scale(1.1);
-    opacity: 0.85;
-}
-
-.subtitle {
-    margin-top: 6px;
-    font-size: 0.95rem;
-    color: #6b6f8f;
-}
-
-/* 内容卡片 */
-.card {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 14px;
-    padding: 20px 22px;
-    margin-bottom: 20px;
-
-    box-shadow:
-        0 12px 30px rgba(0, 0, 0, 0.08),
-        0 0 0 1px rgba(148, 163, 184, 0.25);
-
-    backdrop-filter: blur(8px);
-}
-
-.card h2 {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-}
-
-/* 列表 */
-.help-list {
-    margin-top: 10px;
-    padding-left: 18px;
-}
-
-.help-list li {
-    margin-bottom: 6px;
-}
-
-.help-list a {
-    color: #4f46e5;
-    text-decoration: none;
-}
-
-.help-list a:hover {
-    text-decoration: underline;
-}
-
-/* 隐藏模块 */
-.hidden {
-    display: none;
-}
-
-/* 底部 */
-.site-footer {
-    text-align: center;
-    margin-top: 20px;
-    color: #9ca3af;
-    font-size: 0.85rem;
-}
-
-/* 深色模式 */
-@media (prefers-color-scheme: dark) {
-    .center-box {
-        background: rgba(15, 23, 42, 0.82);
-        border-color: rgba(51, 65, 85, 0.9);
-    }
-
-    .card {
-        background: rgba(15, 23, 42, 0.88);
-    }
-
-    .title-with-icon {
-        color: #e5e7eb;
-    }
-
-    .subtitle {
-        color: #9ca3c7;
-    }
-
-    .site-footer {
-        color: #6b7280;
-    }
-}    align-items: center;
-    gap: 12px;
-    font-size: 2.4rem;
-    color: #2b2f55;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
 /* 图标样式 */
 .title-icon img {
     width: 36px;
@@ -179,110 +81,19 @@ body {
     gap: 20px;
 }
 
-/* 卡片样式 */
+/* 卡片玻璃拟态 */
 .card {
-    background: rgba(255, 255, 255, 0.88);
+    background: rgba(255, 255, 255, 0.45);
     border-radius: 16px;
     padding: 20px 22px;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border: 1px solid rgba(255, 255, 255, 0.45);
     box-shadow:
         0 18px 45px rgba(15, 23, 42, 0.08),
         0 0 0 1px rgba(148, 163, 184, 0.18);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(148, 163, 184, 0.25);
-}
-
-.card h2 {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-}
-
-/* 列表 */
-.help-list {
-    margin-top: 10px;
-    padding-left: 18px;
-}
-
-.help-list li {
-    margin-bottom: 6px;
-}
-
-.help-list a {
-    color: #4f46e5;
-    text-decoration: none;
-}
-
-.help-list a:hover {
-    text-decoration: underline;
-}
-
-/* 隐藏模块 */
-.hidden {
-    display: none;
-}
-
-/* 底部 */
-.site-footer {
-    text-align: center;
-    margin-top: 40px;
-    color: #9ca3af;
-    font-size: 0.85rem;
-}
-
-/* 深色模式 */
-@media (prefers-color-scheme: dark) {
-    .card {
-        background: rgba(15, 23, 42, 0.85);
-        border-color: rgba(51, 65, 85, 0.9);
-    }
-
-    .title-with-icon {
-        color: #e5e7eb;
-    }
-
-    .subtitle {
-        color: #9ca3c7;
-    }
-
-    .site-footer {
-        color: #6b7280;
-    }
-}
-/* 图标样式 */
-.title-icon img {
-    width: 36px;
-    height: 36px;
-    object-fit: contain;
-    border-radius: 8px;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.title-icon:hover img {
-    transform: scale(1.1);
-    opacity: 0.85;
-}
-
-.subtitle {
-    margin-top: 6px;
-    font-size: 0.95rem;
-    color: #6b6f8f;
-}
-
-/* 内容布局 */
-.content {
-    display: grid;
-    gap: 20px;
-}
-
-/* 卡片样式 */
-.card {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 16px;
-    padding: 20px 22px;
-    box-shadow:
-        0 18px 45px rgba(15, 23, 42, 0.08),
-        0 0 0 1px rgba(148, 163, 184, 0.18);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(148, 163, 184, 0.25);
 }
 
 .card h2 {
@@ -325,112 +136,22 @@ body {
 /* 深色模式 */
 @media (prefers-color-scheme: dark) {
     body {
-        background: #0f172a;
-        color: #e5e7eb;
+        background: linear-gradient(
+            135deg,
+            rgba(20, 30, 50, 0.9) 0%,
+            rgba(25, 35, 55, 0.9) 50%,
+            rgba(30, 40, 60, 0.9) 100%
+        );
+    }
+
+    .page-wrapper {
+        background: rgba(20, 25, 40, 0.45);
+        border-color: rgba(255, 255, 255, 0.2);
     }
 
     .card {
-        background: rgba(15, 23, 42, 0.92);
-        border-color: rgba(51, 65, 85, 0.9);
-    }
-
-    .title-with-icon {
-        color: #e5e7eb;
-    }
-
-    .subtitle {
-        color: #9ca3c7;
-    }
-
-    .site-footer {
-        color: #6b7280;
-    }
-}
-/* 图标样式 */
-.title-icon img {
-    width: 36px;
-    height: 36px;
-    object-fit: contain;
-    border-radius: 8px;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.title-icon:hover img {
-    transform: scale(1.1);
-    opacity: 0.85;
-}
-
-.subtitle {
-    margin-top: 6px;
-    font-size: 0.95rem;
-    color: #6b6f8f;
-}
-
-/* 内容布局 */
-.content {
-    display: grid;
-    gap: 20px;
-}
-
-/* 卡片样式 */
-.card {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 16px;
-    padding: 20px 22px;
-    box-shadow:
-        0 18px 45px rgba(15, 23, 42, 0.08),
-        0 0 0 1px rgba(148, 163, 184, 0.18);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(148, 163, 184, 0.25);
-}
-
-.card h2 {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-}
-
-/* 列表 */
-.help-list {
-    margin-top: 10px;
-    padding-left: 18px;
-}
-
-.help-list li {
-    margin-bottom: 6px;
-}
-
-.help-list a {
-    color: #4f46e5;
-    text-decoration: none;
-}
-
-.help-list a:hover {
-    text-decoration: underline;
-}
-
-/* 隐藏模块 */
-.hidden {
-    display: none;
-}
-
-/* 底部 */
-.site-footer {
-    text-align: center;
-    margin-top: 40px;
-    color: #9ca3af;
-    font-size: 0.85rem;
-}
-
-/* 深色模式 */
-@media (prefers-color-scheme: dark) {
-    body {
-        background: #0f172a;
-        color: #e5e7eb;
-    }
-
-    .card {
-        background: rgba(15, 23, 42, 0.92);
-        border-color: rgba(51, 65, 85, 0.9);
+        background: rgba(30, 40, 60, 0.45);
+        border-color: rgba(255, 255, 255, 0.2);
     }
 
     .title-with-icon {
