@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据传输境外告知</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 900px;
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 16px;
+        padding: 20px 24px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+        margin-top: 20px;
+    }
+
+    h1, h2, h3 {
+        color: #333;
+        margin-top: 20px;
+    }
+
+    p, li {
+        color: #222;
+        line-height: 1.7;
+        font-size: 15px;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    .scroll-box {
+        max-height: 60vh;
+        overflow-y: auto;
+        padding-right: 10px;
+    }
+
+    .scroll-box::-webkit-scrollbar {
+        width: 6px;
+    }
+    .scroll-box::-webkit-scrollbar-thumb {
+        background: rgba(0,0,0,0.2);
+        border-radius: 3px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        border: none;
+        border-radius: 10px;
+        color: white;
+        font-size: 16px;
+        margin-top: 20px;
+        cursor: not-allowed;
+        opacity: 0.5;
+        transition: 0.3s;
+    }
+
+    .btn.enabled {
+        cursor: pointer;
+        opacity: 1;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            padding: 16px;
+        }
+        h1 {
+            font-size: 22px;
+        }
+    }
+</style>
+
+<script>
+    // 获取 URL 参数
+    function getQueryParam(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+
+    // 获取 cookie
+    function getCookie(name) {
+        const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+        return match ? match[2] : null;
+    }
+
+    // 页面加载
+    window.onload = function () {
+        const targetURL = getQueryParam("url");
+
+        // 如果 cookie 已存在 → 直接跳转
+        if (getCookie("cross_data_notice") === "1" && targetURL) {
+            window.location.href = targetURL;
+            return;
+        }
+
+        const box = document.getElementById("scrollBox");
+        const btn = document.getElementById("nextBtn");
+
+        // 滚动到底激活按钮
+        box.addEventListener("scroll", function () {
+            if (box.scrollTop + box.clientHeight >= box.scrollHeight - 10) {
+                btn.classList.add("enabled");
+                btn.removeAttribute("disabled");
+                btn.style.cursor = "pointer";
+                btn.innerText = "我已知悉并继续";
+            }
+        });
+    };
+
+    // 点击按钮 → 写 cookie → 跳转
+    function acceptAndContinue() {
+        const btn = document.getElementById("nextBtn");
+        if (!btn.classList.contains("enabled")) return;
+
+        const targetURL = getQueryParam("url");
+        if (!targetURL) {
+            alert("未指定跳转链接：缺少 ?url= 参数");
+            return;
+        }
+
+        // 写 cookie
+        const days = 365;
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = "cross_data_notice=1; expires=" + date.toUTCString() + "; path=/";
+
+        // 跳转
+        window.location.href = targetURL;
+    }
+</script>
+
+</head>
+<body>
+
+<div class="container">
+    <h1>数据传输境外告知书</h1>
+
+    <div class="scroll-box" id="scrollBox">
+        <p><strong>版本：V1.0</strong></p>
+
+        <p>
+            为保障您的个人信息和重要数据在跨境传输过程中的安全，依据相关法律法规的要求，
+            我们向您说明数据可能被传输至境外的情形及相关事项。本告知书旨在向您提供透明的信息说明，
+            不涉及选择或授权操作。
+        </p>
+
+        <h2>一、跨境传输的目的</h2>
+        <ul>
+            <li>提供跨境业务功能或服务支持</li>
+            <li>使用境外云服务进行数据存储、备份或处理</li>
+            <li>提升系统性能、稳定性或安全性</li>
+            <li>其他合法、正当、必要的业务需求</li>
+        </ul>
+
+        <h2>二、可能涉及的数据类型</h2>
+        <ul>
+            <li>基础信息：如姓名、联系方式、账号信息</li>
+            <li>设备信息：如设备型号、IP 地址、系统版本</li>
+            <li>使用行为数据：如访问记录、操作日志</li>
+            <li>业务相关数据：如订单信息、服务记录</li>
+            <li>其他为实现业务目的所需的数据</li>
+        </ul>
+
+        <h2>三、境外接收方信息</h2>
+        <p><strong>接收方名称：</strong>github</p>
+        <p><strong>所在国家/地区：</strong>全球</p>
+        <p><strong>联系方式：</strong> - </p>
+        <p><strong>处理方式：</strong>存储、分析、备份、提供服务等</p>
+        <p><strong>安全措施：</strong>加密传输、访问控制、数据隔离、合规认证等</p>
+                <p><strong>接收方名称：</strong>简云IDC</p>
+        <p><strong>所在国家/地区：</strong>美国</p>
+        <p><strong>联系方式：</strong>未留下对外的联系方式</p>
+        <p><strong>处理方式：</strong>存储、分析、备份、提供服务等</p>
+        <p><strong>安全措施：</strong>加密传输、访问控制、数据隔离、合规认证等</p>
+                <p><strong>接收方名称：</strong>Cloudfare</p>
+        <p><strong>所在国家/地区：</strong>全球</p>
+        <p><strong>联系方式：</strong> - </p>
+        <p><strong>处理方式：</strong>存储、分析、备份、提供服务等</p>
+        <p><strong>安全措施：</strong>加密传输、访问控制、数据隔离、合规认证等</p>
+
+        <h2>四、传输方式与存储期限</h2>
+        <ul>
+            <li>通过加密通道（如 HTTPS、TLS、VPN）进行传输</li>
+            <li>存储于境外服务器或云平台</li>
+            <li>存储期限以实现业务目的所需的最短时间为限</li>
+            <li>到期后将进行匿名化或安全删除</li>
+        </ul>
+
+        <h2>五、数据安全保护措施</h2>
+        <ul>
+            <li>数据加密与脱敏</li>
+            <li>访问权限最小化</li>
+            <li>安全审计与日志监控</li>
+            <li>合规的供应商管理制度</li>
+            <li>定期安全评估与风险监控</li>
+        </ul>
+
+        <h2>六、可能存在的风险提示</h2>
+        <ul>
+            <li>不同国家/地区法律保护水平差异</li>
+            <li>网络攻击、系统故障等不可控风险</li>
+            <li>接收方所在地区监管制度差异导致的潜在风险</li>
+        </ul>
+
+        <h2>七、联系方式</h2>
+        <p><strong>联系方式：</strong>sb34@foxmail</p>
+    </div>
+
+    <button id="nextBtn" class="btn" disabled onclick="acceptAndContinue()">请先滚动阅读完整内容</button>
+</div>
+
+</body>
+</html>
