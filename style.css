@@ -165,4 +165,8 @@ body {
     .site-footer {
         color: #6b7280;
     }
+    .site-footer a img {
+    margin-top: 8px;
+    height: 20px;
+        }
 }
