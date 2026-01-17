@@ -95,9 +95,36 @@
             });
     }
     // 播放按钮逻辑
-document.getElementById("playBgmBtn").addEventListener("click", () => {
-    const bgm = document.getElementById("bgm");
+// 播放按钮 + 冷却逻辑
+const playBtn = document.getElementById("playBgmBtn");
+const bgm = document.getElementById("bgm");
+
+// 冷却时间：3 分 06 秒 = 186 秒
+const cooldownTime = 186;
+let cooldown = 0;
+let timer = null;
+
+playBtn.addEventListener("click", () => {
+    if (cooldown > 0) return; // 冷却中禁止点击
+
+    // 播放音乐
     bgm.play();
+
+    // 开始冷却
+    cooldown = cooldownTime;
+    playBtn.disabled = true;
+    playBtn.textContent = `冷却中 (${cooldown}s)`;
+
+    timer = setInterval(() => {
+        cooldown--;
+        if (cooldown <= 0) {
+            clearInterval(timer);
+            playBtn.disabled = false;
+            playBtn.textContent = "播放背景音乐";
+        } else {
+            playBtn.textContent = `冷却中 (${cooldown}s)`;
+        }
+    }, 1000);
 });
 
 </script>
