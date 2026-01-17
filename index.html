@@ -20,9 +20,9 @@
 <body>
 
 <div class="page-wrapper">
-<audio id="bgm" src="assets/xl.mp3" autoplay loop muted></audio>
+<audio id="bgm" src="assets/xl.mp3" autoplay loop ></audio>
     <script> // 等用户点击页面后解除静音 
-        document.body.addEventListener("click", () => { const bgm = document.getElementById("bgm"); bgm.muted = false; bgm.play(); }, { once: true }); 
+       // document.body.addEventListener("click", () => { const bgm = document.getElementById("bgm"); bgm.muted = true; bgm.play(); }, { once: true }); 
     </script>
     <!-- 顶部标题 + 本地图标 -->
     <header class="site-header">
