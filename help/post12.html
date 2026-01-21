@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>漂流瓶系统使用说明（人工广告判定规则）</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", sans-serif;
+      background: linear-gradient(135deg, #e0f2ff, #f5f7ff);
+      color: #222;
+    }
+    .page {
+      max-width: 900px;
+      margin: 30px auto;
+      background: rgba(255,255,255,0.95);
+      border-radius: 16px;
+      padding: 28px 24px 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    h1, h2 {
+      color: #0b63d1;
+      margin-bottom: 12px;
+    }
+    h1 { text-align: center; }
+    p { line-height: 1.7; }
+    ul { padding-left: 20px; }
+    .highlight {
+      background: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      padding: 10px 12px;
+      border-radius: 8px;
+      margin: 12px 0;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <h1>🌊 漂流瓶系统使用说明</h1>
+
+  <p class="highlight">
+    本系统为 <strong>纯 PHP + MySQL 网页版漂流瓶</strong>，支持匿名扔瓶子、捡瓶子，并提供后台管理功能。
+    所有内容均由管理员人工审核，若发现广告或违规内容将被删除。
+  </p>
+
+  <h2>一、系统用途</h2>
+  <p>漂流瓶系统适用于：</p>
+  <ul>
+    <li>匿名吐槽、树洞、留言墙</li>
+    <li>轻量级互动社区</li>
+    <li>匿名心情记录</li>
+    <li>开源学习 PHP + MySQL 项目结构</li>
+  </ul>
+
+  <h2>二、前台功能</h2>
+  <ul>
+    <li><strong>扔瓶子：</strong>用户输入内容后提交（普通用户每天最多 3 次）</li>
+    <li><strong>捡瓶子：</strong>随机展示数据库中的一条内容</li>
+    <li><strong>自适应布局：</strong>手机和电脑均可完美显示</li>
+  </ul>
+
+  <h2>三、后台功能</h2>
+  <ul>
+    <li>管理员登录（默认账号：admin / 114514）</li>
+    <li>管理漂流瓶（查看 / 删除）</li>
+    <li>修改管理员用户名和密码</li>
+    <li>退出登录</li>
+  </ul>
+
+  <h2>四、管理员如何判断“广告内容”？</h2>
+
+  <p>本系统由管理员人工审核，以下内容将被视为广告并删除：</p>
+
+  <h3>1. 含有链接的内容</h3>
+  <ul>
+    <li>任何 <strong>http://</strong> 或 <strong>https://</strong> 开头的内容</li>
+    <li>短链接（如 t.cn、bit.ly、tinyurl 等）</li>
+    <li>推广链接、邀请链接、下载链接</li>
+  </ul>
+
+  <h3>2. 明显推广或营销内容</h3>
+  <ul>
+    <li>“关注公众号”</li>
+    <li>“扫码加我”</li>
+    <li>“优惠、返利、代理、推广”</li>
+    <li>“高薪兼职、日赚 XX、赚钱项目”</li>
+  </ul>
+
+  <h3>3. 含联系方式的内容</h3>
+  <ul>
+    <li>手机号（11 位数字）</li>
+    <li>QQ 号（5–12 位数字）</li>
+    <li>微信号（字母数字组合）</li>
+    <li>群号、客服号、商务合作号</li>
+  </ul>
+
+  <h3>4. 重复刷屏内容</h3>
+  <ul>
+    <li>同一用户（同 IP）短时间内重复发相似内容</li>
+    <li>明显机器人行为</li>
+  </ul>
+
+  <h2>五、管理员处理方式</h2>
+  <p>管理员在后台 <code>manage_bottles.php</code> 中可以：</p>
+  <ul>
+    <li>查看所有用户提交的瓶子</li>
+    <li>一键删除广告或违规内容</li>
+    <li>保持漂流瓶内容干净、健康</li>
+  </ul>
+
+  <h2>六、总结</h2>
+  <p>
+    本系统提供一个轻量、匿名、干净的留言平台。  
+    管理员通过人工审核方式删除广告和违规内容，确保用户体验良好。  
+    若你在使用中发现垃圾广告，只需在后台删除即可。
+  </p>
+
+</div>
+</body>
+</html>
